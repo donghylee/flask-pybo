@@ -1,10 +1,24 @@
 from flask import Flask
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
+import config
+
+db = SQLAlchemy()
+migrate = Migrate()
 
 # 애플리케이션 팩토리
 def create_app():
     app = Flask(__name__)
 
-# 블루프린트 등록
+    app.config.from_object(config)
+
+    # ORM 초기 설정
+    db.init_app(app)
+    migrate.init_app(app, db)
+    from . import models
+
+    # 블루프린트 등록
     from .views import main_views
     app.register_blueprint(main_views.bp)
 
