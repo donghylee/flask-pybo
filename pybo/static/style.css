@@ -1,7 +1,5 @@
-textarea {
-    width: 100%;
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
 }
 
-button[type="submit"] {
-    margin-top: 10px;
-}

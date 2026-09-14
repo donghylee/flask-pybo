@@ -11,7 +11,7 @@ def create(question_id):
     question = Question.query.get_or_404(question_id)
     content = request.form['content']
 
-    answer = Answer(content=content, create_date=datetime.now())
+    answer = Answer(question=question, content=content, create_date=datetime.now())
     question.answer_set.append(answer)
     db.session.commit()
 
